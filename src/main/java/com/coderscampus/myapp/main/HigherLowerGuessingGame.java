@@ -1,5 +1,11 @@
 package com.coderscampus.myapp.main;
 
+import java.util.concurrent.ThreadLocalRandom;
+
+import org.hamcrest.core.Is;
+
+import java.util.Scanner;
+
 import com.coderscampus.myapp.service.MyService;
 
 public class HigherLowerGuessingGame {
@@ -15,32 +21,81 @@ public class HigherLowerGuessingGame {
 		// This removes any need to consume statics
 
 		
-		// Generate random int number between 1 and 100 inclusive.
+		// Generate random int number (randomNumber) between 1 and 100 inclusive. randomNumber
+		
+		int randomNumber = ThreadLocalRandom.current().nextInt(1, 100 +1 );
+//		System.out.println(randomNumber);
+//		Can uncomment to confirm a random number is generated correctly (it is).
 		
 		// set guessAttemptsRemaining to 5
-		
-		
+		int guessAttemptsRemaining = 5;
+				
 		// User guesses. "Pick a number between 1 and 100"
+		
+		
+		
+		String userInput = userGuess();
+		
+		
 		// validate userInput and ensure it is a number between 1 and 100, if not, ask for input again.
+		
+		int userInputInt = 0;
+		
+//		first make it an integer, so it can be compared to other numbers.
+		try {
+			userInputInt = Integer.parseInt(userInput);			
+			}
+		catch(NumberFormatException nFE) {
+//		    System.out.println("Not an Integer");
+			System.out.println("Your guess is not between 1 and 100, please try again");
+//			and go to the function to get new user input, without subtracting a remaining guess.
+			userInput = userGuess();
+			}
+		
+		
+		if ((userInputInt >= 1) == (userInputInt <= 100)) {
+		
+			
+			System.out.println("your input is a number between 1 and 100, woohoo!");
+		}
+		else
+		{
+			System.out.println("your input isn't a number between 1 and 100, boohoo.");
+		}
+		// "Your guess is not between 1 and 100, please try again"
 		// when valid, check how the userInput matches the randomNumber and return output
 //		1.       “Please pick a higher number” (if the number they chose is lower than the randomly generated number), or
 //		then substract a guessAttemptsRemaining, if still more than 0 guesses remaining, give another guess
-//		  
+//		  if 0 guesses or less, then go to LoseGame
 //
 //		2.       “Please pick a lower number” (if the number they chose is higher than the randomly generated number), or
 //		then substract a guessAttemptsRemaining, if still more than 0 guesses remaining, give another guess
-//		  
+//		  if 0 guesses or less, then go to LoseGame
 //
 //		3.       “You win!” (if they guess the correct number)
 		// exit programm.
 //		
 		
+//		private void LoseGame();
+//		{
+////		You lose!
+//
+////		The number to guess was: randomNumber
+//		}
 		
 		
 		
 		
+	}
+
+	String userGuess() {
+		System.out.println("Pick a number between 1 and 100");
 		
+		java.util.Scanner scannerUserInput = new
+		java.util.Scanner(System.in);
 		
+		String userInput = scannerUserInput.next();
+		return userInput;
 	}
 
 }
