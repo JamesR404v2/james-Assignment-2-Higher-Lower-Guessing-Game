@@ -13,10 +13,14 @@ public class HigherLowerGuessingGame {
 	private MyService myService = new MyService();
 	
 	public static void main(String[] args) {
+
+//		String userInput = "no input yet";
+		int userInputInt = 0;
+		
 		new HigherLowerGuessingGame().execute();
 	}
 
-	private void execute() {
+	public void execute() {
 		// Your code goes here, not in the main() method
 		// This removes any need to consume statics
 
@@ -33,20 +37,23 @@ public class HigherLowerGuessingGame {
 		// User guesses. "Pick a number between 1 and 100"
 		
 		
+//		public String userInput = "user did not give any input yet";
+//		public String userInput;
 		
-		String userInput = userGuess();
+		userInput = userGuess();
 		
 		
 		// validate userInput and ensure it is a number between 1 and 100, if not, ask for input again.
 		
-		int userInputInt = 0;
+//		int userInputInt = 0;
+//		declaring this in the main function instead, so it is usable in the userGuess function.
 		
 //		first make it an integer, so it can be compared to other numbers.
 		try {
 			userInputInt = Integer.parseInt(userInput);			
 			}
 		catch(NumberFormatException nFE) {
-//		    System.out.println("Not an Integer");
+		    System.out.println("Not an Integer");
 			System.out.println("Your guess is not between 1 and 100, please try again");
 //			and go to the function to get new user input, without subtracting a remaining guess.
 			userInput = userGuess();
@@ -94,7 +101,7 @@ public class HigherLowerGuessingGame {
 		java.util.Scanner scannerUserInput = new
 		java.util.Scanner(System.in);
 		
-		String userInput = scannerUserInput.next();
+		userInput = scannerUserInput.next();
 		return userInput;
 	}
 
