@@ -14,7 +14,7 @@ public class HigherLowerGuessingGame {
 	
 	public static void main(String[] args) {
 
-		String userInput = "no user input yet";
+//		String userInput = "no user input yet";
 		int userInputInt = 0;
 		
 		new HigherLowerGuessingGame().execute();
@@ -45,10 +45,10 @@ public class HigherLowerGuessingGame {
 		
 		// validate userInput and ensure it is a number between 1 and 100, if not, ask for input again.
 		
-		int userInputInt = 0;
+//		int userInputInt = 0;
 //		declaring this in the main function instead, so it is usable in the userGuess function.
 		
-userInputInt = convertUserInputToUserInputInt(userInput, userInputInt);
+int userInputInt = convertUserInputToUserInputInt(userInput);
 		
 		
 		if ((userInputInt >= 1) == (userInputInt <= 100)) {
@@ -86,8 +86,9 @@ userInputInt = convertUserInputToUserInputInt(userInput, userInputInt);
 		
 	}
 
-	public int convertUserInputToUserInputInt(String userInput, int userInputInt) {
+	public int convertUserInputToUserInputInt(String userInput) {
 		//		first make it an integer, so it can be compared to other numbers.
+		int userInputInt = 0;
 		try {
 //			int userInputInt = 0;
 			// declaring variable so it can be used.
@@ -98,8 +99,9 @@ userInputInt = convertUserInputToUserInputInt(userInput, userInputInt);
 		    System.out.println("Not an Integer");
 			System.out.println("Your guess is not between 1 and 100, please try again");
 //			and go to the function to get new user input, without subtracting a remaining guess.
+//			String userInput = "initialized value";
 			userInput = userGuess();
-			convertUserInputToUserInputInt(String userInput, int userInputInt);
+			convertUserInputToUserInputInt(userInput);
 			}
 		return userInputInt;
 	}
