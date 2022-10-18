@@ -51,20 +51,29 @@ public class HigherLowerGuessingGame {
 int userInputInt = convertUserInputToUserInputInt(userInput);
 		
 		
-		if ((userInputInt >= 1) == (userInputInt <= 100)) {
+		checkUserInputRangeOK(userInputInt);
+		// only after the checkUserInputRangeOK is OK, the script will continue here.
 		
+		
+		
+		// Compare userInputInt to randomNumber
+		if (userInputInt < randomNumber)
+			System.out.println("Please pick a higher number");
+			guessAttemptsRemaining -1
 			
-			System.out.println("your input is a number between 1 and 100, woohoo!");
-		}
-		else
-		{
-			System.out.println("your input isn't a number between 1 and 100, boohoo.");
-		}
-		// "Your guess is not between 1 and 100, please try again"
-		// when valid, check how the userInput matches the randomNumber and return output
+			userInput = userGuess();
+//			after we get userInput, we need to do all the other steps mentioned above... *sigh* I need the program to start at the beginning but I do not have goto.
+		if
+		
+		
+		if
+		
+		
 //		1.       “Please pick a higher number” (if the number they chose is lower than the randomly generated number), or
 //		then substract a guessAttemptsRemaining, if still more than 0 guesses remaining, give another guess
 //		  if 0 guesses or less, then go to LoseGame
+		
+		
 //
 //		2.       “Please pick a lower number” (if the number they chose is higher than the randomly generated number), or
 //		then substract a guessAttemptsRemaining, if still more than 0 guesses remaining, give another guess
@@ -74,16 +83,36 @@ int userInputInt = convertUserInputToUserInputInt(userInput);
 		// exit programm.
 //		
 		
-//		private void LoseGame();
-//		{
-////		You lose!
-//
-////		The number to guess was: randomNumber
-//		}
+		private void LoseGame();
+		{
+		System.out.println("You lose, the number to guess was:" randomNumber);
+		System.exit(0);
+		}
 		
 		
 		
 		
+	}
+
+	public int checkUserInputRangeOK(int userInputInt) {
+		String userInput;
+		if ((userInputInt >= 1) == (userInputInt <= 100)) {
+//			System.out.println("your input is a number between 1 and 100, woohoo!");
+			// when valid, check how the userInput matches the randomNumber and return output	
+			// but I'll do that by returning the programm to where we first called this function - so that the guessAttemptsRemaining variable is available.
+			
+			return userInputInt;
+		}
+		else
+		{
+			System.out.println("Your guess is not between 1 and 100, please try again");
+			userInput = userGuess();
+			// again need to try to convert the new guess to a number again
+			userInputInt = convertUserInputToUserInputInt(userInput);
+			// then when convertUserInputToUserInputInt completes, need to check if the number is between 1 and 100 again.
+			checkUserInputRangeOK(userInputInt);
+		}
+		return userInputInt;
 	}
 
 	public int convertUserInputToUserInputInt(String userInput) {
@@ -96,10 +125,9 @@ int userInputInt = convertUserInputToUserInputInt(userInput);
 			userInputInt = Integer.parseInt(userInput);			
 			}
 		catch(NumberFormatException nFE) {
-		    System.out.println("Not an Integer");
+//		    System.out.println("Not an Integer");
 			System.out.println("Your guess is not between 1 and 100, please try again");
 //			and go to the function to get new user input, without subtracting a remaining guess.
-//			String userInput = "initialized value";
 			userInput = userGuess();
 			convertUserInputToUserInputInt(userInput);
 			}
