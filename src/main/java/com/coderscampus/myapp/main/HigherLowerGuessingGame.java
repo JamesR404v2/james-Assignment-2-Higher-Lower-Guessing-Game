@@ -9,139 +9,96 @@ import java.util.Scanner;
 import com.coderscampus.myapp.service.MyService;
 
 public class HigherLowerGuessingGame {
-	
+
 	private MyService myService = new MyService();
-	
+
 	public static void main(String[] args) {
 
-//		String userInput = "no user input yet";
-		int userInputInt = 0;
-		
-		new HigherLowerGuessingGame().execute();
+	new HigherLowerGuessingGame().execute();
 	}
+}
 
 	public void execute() {
 		// Your code goes here, not in the main() method
 		// This removes any need to consume statics
 
+		int userInputInt = 0;
 		
 		// Generate random int number (randomNumber) between 1 and 100 inclusive. randomNumber
-		
 		int randomNumber = ThreadLocalRandom.current().nextInt(1, 100 +1 );
-//		System.out.println(randomNumber);
-//		Can uncomment to confirm a random number is generated correctly (it is).
 		
 		// set guessAttemptsRemaining to 5
 		int guessAttemptsRemaining = 5;
 				
-		// User guesses. "Pick a number between 1 and 100"
-		
+		// Create userInput string for storing future input from the user.		
 		
 		String userInput = "user did not give any input yet";
-//		public String userInput;
+
 		
-		userInput = userGuess();
+//		while the user still has guesses remaining, 
+//		keep letting the user guess till he guesses correctly or runs out of guesses.
 		
-		
-		// validate userInput and ensure it is a number between 1 and 100, if not, ask for input again.
-		
-//		int userInputInt = 0;
-//		declaring this in the main function instead, so it is usable in the userGuess function.
-		
-int userInputInt = convertUserInputToUserInputInt(userInput);
-		
-		
-		checkUserInputRangeOK(userInputInt);
-		// only after the checkUserInputRangeOK is OK, the script will continue here.
-		
-		
-		
-		// Compare userInputInt to randomNumber
-		if (userInputInt < randomNumber)
-			System.out.println("Please pick a higher number");
-			guessAttemptsRemaining -1
+	while (guessAttemptsRemaining > 0 && userInputInt != randomNumber) {
+//			ask user for (new) input		
+				System.out.println("Pick a number between 1 and 100");
+				
+				java.util.Scanner scannerUserInput = new
+				java.util.Scanner(System.in);
+				
+				userInput = scannerUserInput.next();
 			
-			userInput = userGuess();
-//			after we get userInput, we need to do all the other steps mentioned above... *sigh* I need the program to start at the beginning but I do not have goto.
-		if
-		
-		
-		if
-		
-		
-//		1.       “Please pick a higher number” (if the number they chose is lower than the randomly generated number), or
-//		then substract a guessAttemptsRemaining, if still more than 0 guesses remaining, give another guess
-//		  if 0 guesses or less, then go to LoseGame
-		
-		
-//
-//		2.       “Please pick a lower number” (if the number they chose is higher than the randomly generated number), or
-//		then substract a guessAttemptsRemaining, if still more than 0 guesses remaining, give another guess
-//		  if 0 guesses or less, then go to LoseGame
-//
-//		3.       “You win!” (if they guess the correct number)
-		// exit programm.
-//		
-		
-		private void LoseGame();
-		{
-		System.out.println("You lose, the number to guess was:" randomNumber);
-		System.exit(0);
-		}
-		
-		
-		
-		
-	}
 
-	public int checkUserInputRangeOK(int userInputInt) {
-		String userInput;
-		if ((userInputInt >= 1) == (userInputInt <= 100)) {
-//			System.out.println("your input is a number between 1 and 100, woohoo!");
-			// when valid, check how the userInput matches the randomNumber and return output	
-			// but I'll do that by returning the programm to where we first called this function - so that the guessAttemptsRemaining variable is available.
+				// first make it an integer, so it can be compared to other numbers.
+					try {
+						userInputInt = Integer.parseInt(userInput);
+					} catch (NumberFormatException nFE) {
+//					    userInput is not an Integer. So let the user specify new input by continuing to a new iteration of the loop.
+						System.out.println("Your guess is not between 1 and 100, please try again");
+						continue;
+					}
+		
+
+	//					String userInput;
+						if ((userInputInt >= 1) == (userInputInt <= 100)) {
+	//						the input is in the valid range, so we can continue normally. 
+						} else {
+							System.out.println("Your guess is not between 1 and 100, please try again");
+							continue;
+	//						The continue statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
+						}
+
+	//					only after the checkUserInputRangeOK is OK, the script will continue here.
 			
-			return userInputInt;
-		}
-		else
-		{
-			System.out.println("Your guess is not between 1 and 100, please try again");
-			userInput = userGuess();
-			// again need to try to convert the new guess to a number again
-			userInputInt = convertUserInputToUserInputInt(userInput);
-			// then when convertUserInputToUserInputInt completes, need to check if the number is between 1 and 100 again.
-			checkUserInputRangeOK(userInputInt);
-		}
-		return userInputInt;
-	}
+			// Compare userInputInt to randomNumber
+			if (userInputInt < randomNumber) {
+				System.out.println("Please pick a higher number");
+	//			substract one guess attempt.
+				guessAttemptsRemaining--;
+	//			continue the script and it will loop around as long as there are still guess attempts remaining.
+				}
+			if	(userInputInt > randomNumber) {
+				System.out.println("Please pick a lower number");
+				guessAttemptsRemaining--;
+	//			continue the script and it will loop around as long as there are still guess attempts remaining.
+				}
+			if	(userInputInt == randomNumber) {
+				System.out.println("You win!");
+	//			scannerUserInput.close();
+	//			thought I have to close the scanner, but it complains it cannot be resolved.
+				System.exit(0);
+				}
+			
 
-	public int convertUserInputToUserInputInt(String userInput) {
-		//		first make it an integer, so it can be compared to other numbers.
-		int userInputInt = 0;
-		try {
-//			int userInputInt = 0;
-			// declaring variable so it can be used.
-//			had it declared earlier in the script but still wasn't usable here....
-			userInputInt = Integer.parseInt(userInput);			
+
+			if(guessAttemptsRemaining==0) {
+	//		we only get here when the guessAttemptsRemaining equal zero. Because the above loop has the entry condition.
+			System.out.println("You lose, the number to guess was:" + randomNumber);
+	//			scannerUserInput.close();
+	//			thought I have to close the scanner, but it complains it cannot be resolved.
+			System.exit(0);
 			}
-		catch(NumberFormatException nFE) {
-//		    System.out.println("Not an Integer");
-			System.out.println("Your guess is not between 1 and 100, please try again");
-//			and go to the function to get new user input, without subtracting a remaining guess.
-			userInput = userGuess();
-			convertUserInputToUserInputInt(userInput);
-			}
-		return userInputInt;
-	}
 
-	String userGuess() {
-		System.out.println("Pick a number between 1 and 100");
-		
-		java.util.Scanner scannerUserInput = new
-		java.util.Scanner(System.in);
-		
-		String userInput = scannerUserInput.next();
-		return userInput;
 	}
-
+		
+		
 }
