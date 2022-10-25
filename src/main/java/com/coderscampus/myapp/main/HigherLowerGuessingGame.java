@@ -19,8 +19,6 @@ public class HigherLowerGuessingGame {
 
 
     public void execute() {
-        // Your code goes here, not in the main() method
-        // This removes any need to consume statics
 
         int userInputInt = 0;
 
@@ -75,6 +73,7 @@ public class HigherLowerGuessingGame {
                 //			substract one guess attempt.
                 guessAttemptsRemaining--;
                 //			continue the script and it will loop around as long as there are still guess attempts remaining.
+//                what is interesting, we cannot use the continue statement here, as then it'll get stuck at minus 1 guesses. So, just let the while loop loop around by itself.
             }
             if (userInputInt > randomNumber) {
                 System.out.println("Please pick a lower number");
