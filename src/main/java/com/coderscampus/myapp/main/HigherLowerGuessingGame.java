@@ -83,12 +83,12 @@ public class HigherLowerGuessingGame {
                 //			continue the script and it will loop around as long as there are still guess attempts remaining.
 //                what is interesting, we cannot use the continue statement here, as then it'll get stuck at minus 1 guesses. So, just let the while loop loop around by itself.
             }
-            if (userInputInt > randomNumber) {
+            else if (userInputInt > randomNumber) {
                 System.out.println("Please pick a lower number");
                 guessAttemptsRemaining--;
                 //			continue the script and it will loop around as long as there are still guess attempts remaining.
             }
-            if (userInputInt == randomNumber) {
+            else if (userInputInt == randomNumber) {
                 System.out.println("You win!");
                 //			scannerUserInput.close();
                 //			thought I have to close the scanner, but it complains it cannot be resolved.
