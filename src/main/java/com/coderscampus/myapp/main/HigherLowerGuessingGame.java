@@ -57,15 +57,23 @@ public class HigherLowerGuessingGame {
 
 
             //					String userInput;
-            if ((userInputInt >= 1) == (userInputInt <= 100)) {
-                //						the input is in the valid range, so we can continue normally.
-            } else {
+//   commented out this part, as I am using simplified code directly below to accomplish the same.
+//            if ((userInputInt >= 1) == (userInputInt <= 100)) {
+//                //						the input is in the valid range, so we can continue normally.
+//            } else {
+//                System.out.println("Your guess is not between 1 and 100, please try again");
+//                continue;
+//                // The continue statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
+//            }
+//            
+            if ((userInputInt < 1 || userInputInt > 100)) {
                 System.out.println("Your guess is not between 1 and 100, please try again");
                 continue;
-                //						The continue statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
+				// The continue statement breaks one iteration (in the loop),
+				// if a specified condition occurs, and continues with the next iteration in the loop.
             }
 
-            //					only after the checkUserInputRangeOK is OK, the script will continue here.
+            // only after the checkUserInputRangeOK is OK, the script will continue here.
 
             // Compare userInputInt to randomNumber
             if (userInputInt < randomNumber) {
